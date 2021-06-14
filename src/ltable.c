@@ -81,7 +81,8 @@ static Node *hashnum (const Table *t, lua_Number n) {
   int i;
   luai_hashnum(i, n);
   if (i < 0) {
-    if (cast(unsigned int, i) == 0u - i)  /* use unsigned to avoid overflows */
+    if (cast(unsigned int, i) == 0u - i)
+      /* use unsigned to avoid overflows. 0u is unsigned 0, 1u is unsigned 1 */
       i = 0;  /* handle INT_MIN */
     i = -i;  /* must be a positive value */
   }
